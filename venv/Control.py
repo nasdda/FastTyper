@@ -19,7 +19,7 @@ class Control:
         self.width = width
         self.height = height
         self.time = 60
-        self.stack = []
+        self.queue = []
 
     def getCurrent(self):
         image = pyautogui.screenshot('image.png', region=(self.initial_x, self.initial_y, self.width, self.height))
@@ -31,9 +31,9 @@ class Control:
         start = time.time()
         while time.time() - start <= self.time:
             time.sleep(0.1)
-            self.stack = list(" ".join(self.getCurrent().split("\n")))
+            self.queue = list(" ".join(self.getCurrent().split("\n")))
             time.sleep(0.1)
-            for character in self.stack:
+            for character in self.queue:
                 self.kb.type(character)
                 time.sleep(0.03)
             self.kb.type(" ")

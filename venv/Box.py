@@ -106,5 +106,5 @@ class Box:
         if self.t is not None:
             if self.t.isAlive():
                 self.control.time = 0
-                self.center_label.config(text="Terminates when stack is \nempty")
+                self.center_label.config(text="Terminates when queue is \nempty")
 
