@@ -30,11 +30,10 @@ class Control:
         time.sleep(3)
         start = time.time()
         while time.time() - start <= self.time:
-            time.sleep(0.2)
-            self.stack = " ".join(self.getCurrent().split("\n")).split()
-
-            for word in self.stack:
-                for letter in word:
-                    self.kb.press(letter)
-                    time.sleep(0.03)
-                self.kb.type(" ")
+            time.sleep(0.1)
+            self.stack = list(" ".join(self.getCurrent().split("\n")))
+            time.sleep(0.1)
+            for character in self.stack:
+                self.kb.type(character)
+                time.sleep(0.03)
+            self.kb.type(" ")
