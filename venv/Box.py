@@ -98,7 +98,7 @@ class Box:
                 self.control.time = int(time)
                 self.t = Thread(target=self.control.start_main)
                 self.t.start()
-                self.center_label.config(text="Starting in 5 Seconds")
+                self.center_label.config(text="Starting in 3 Seconds")
         else:
             self.center_label.config(text="No Target")
 

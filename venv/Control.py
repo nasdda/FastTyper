@@ -27,7 +27,7 @@ class Control:
 
 
     def start_main(self):
-        time.sleep(5)
+        time.sleep(3)
         start = time.time()
         while time.time() - start <= self.time:
             time.sleep(0.2)
