@@ -30,10 +30,9 @@ class Control:
         time.sleep(3)
         start = time.time()
         while time.time() - start <= self.time:
-            time.sleep(0.1)
-            self.queue = list(" ".join(self.getCurrent().split("\n")))
-            time.sleep(0.1)
+            time.sleep(0.3)
+            self.queue = " ".join(self.getCurrent().split("\n"))
             for character in self.queue:
                 self.kb.type(character)
                 time.sleep(0.03)
-            self.kb.type(" ")
+            self.kb.type(' ')
