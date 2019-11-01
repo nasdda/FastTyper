@@ -23,15 +23,15 @@ class Control:
 
     def getCurrent(self):
         image = pyautogui.screenshot('image.png', region=(self.initial_x, self.initial_y, self.width, self.height))
-        return pytesseract.image_to_string(PIL.Image.open('image.PNG').convert("RGB"),lang='eng')
-
+        result =  pytesseract.image_to_string(PIL.Image.open('image.PNG').convert("RGB"),lang='eng')
+        return " ".join(result.split("\n"))
 
     def start_main(self):
         time.sleep(3)
         start = time.time()
         while time.time() - start <= self.time:
             time.sleep(0.3)
-            self.queue = " ".join(self.getCurrent().split("\n"))
+            self.queue = self.getCurrent()
             for character in self.queue:
                 self.kb.type(character)
                 time.sleep(0.03)
