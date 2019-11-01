@@ -24,7 +24,8 @@ class Control:
     def getCurrent(self):
         image = pyautogui.screenshot('image.png', region=(self.initial_x, self.initial_y, self.width, self.height))
         result =  pytesseract.image_to_string(PIL.Image.open('image.PNG').convert("RGB"),lang='eng')
-        return " ".join(result.split("\n"))
+        result = [line.strip() for line in result.split()]
+        return " ".join(result)
 
     def start_main(self):
         time.sleep(3)
