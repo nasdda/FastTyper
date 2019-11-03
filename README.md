@@ -7,3 +7,6 @@ Video Demos:
 https://www.youtube.com/watch?v=WrnMxmRJbOg&feature=youtu.be
 
 https://www.youtube.com/watch?v=gjy_dWyubYk&feature=youtu.be
+
+
+Implements pytesseract, pyautogui, tkinter, PIL
