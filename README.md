@@ -7,6 +7,6 @@ Video Demos:
 
 https://www.youtube.com/watch?v=gjy_dWyubYk&feature=youtu.be
 
-https://www.youtube.com/watch?v=WrnMxmRJbOg&feature=youtu.be
+https://www.youtube.com/watch?v=bhtABi6YxeE
 
 Utilizes pytesseract, pyautogui, tkinter, PIL
