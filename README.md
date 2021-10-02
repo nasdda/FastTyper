@@ -5,8 +5,8 @@ Capture specific part of the screen and enter the duration of the test. Then sim
 
 Video Demos:
 
-https://www.youtube.com/watch?v=gjy_dWyubYk&feature=youtu.be
+https://youtu.be/noriJlHH3So
 
-https://www.youtube.com/watch?v=bhtABi6YxeE
+https://youtu.be/bhtABi6YxeE
 
 Utilizes pytesseract, pyautogui, tkinter, PIL
