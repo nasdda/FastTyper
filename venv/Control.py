@@ -10,14 +10,16 @@ import time
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract'
 TESSDATA_PREFIX = 'C:/Program Files (x86)/Tesseract-OCR'
 
-
 class Control:
-    def __init__(self,initial_x,initial_y, width, height):
+    def __init__(self,initial_x,initial_y, width, height, stop_event):
         self.kb = Controller()
         self.initial_x = initial_x
         self.initial_y = initial_y
         self.width = width
         self.height = height
+        self.stop_event = stop_event
+        self.pause_per_capture = 0.3
+        self.pause_per_character = 0.02
         self.time = 60
         self.queue = []
 
@@ -30,10 +32,12 @@ class Control:
     def start_main(self):
         time.sleep(3)
         start = time.time()
-        while time.time() - start <= self.time:
-            time.sleep(0.3)
+        while (not self.stop_event.is_set()) and time.time() - start <= self.time:
+            time.sleep(self.pause_per_capture)
             self.queue = self.getCurrent()
             for character in self.queue:
+                if self.stop_event.is_set():
+                    return
                 self.kb.type(character)
-                time.sleep(0.03)
+                time.sleep(self.pause_per_character)
             self.kb.type(' ')

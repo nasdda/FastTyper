@@ -1,15 +1,14 @@
 import tkinter as tk
 from capture_box import GUI
 from Control import Control
-from threading import Thread
+from threading import Thread, Event
 from time import sleep
-
-
 
 class Box:
     def __init__(self):
         self.dim = None
         self.t = None
+        self.stop_event = Event()
         self.root = tk.Tk()
         self.root.title("FastTyper")
         self.root.resizable(False,False)
@@ -65,7 +64,7 @@ class Box:
 
         #ensure only numbers are entered
         if (action == '1'):
-            if text in '0123456789.-+':
+            if text in '0123456789':
                 try:
                     float(value_if_allowed)
                     return True
@@ -94,7 +93,7 @@ class Box:
             if not time:
                 self.center_label.config(text="Invalid duration:\nPlease enter number of\nseconds")
             else:
-                self.control = Control(self.dim[0], self.dim[1], self.dim[2], self.dim[3])
+                self.control = Control(self.dim[0], self.dim[1], self.dim[2], self.dim[3], self.stop_event)
                 self.control.time = int(time)
                 self.t = Thread(target=self.control.start_main)
                 self.t.start()
@@ -103,8 +102,7 @@ class Box:
             self.center_label.config(text="No Target")
 
     def terminate_button_clicked(self):
-        if self.t is not None:
-            if self.t.isAlive():
-                self.control.time = 0
-                self.center_label.config(text="Terminates when queue is \nempty")
+        if self.t is not None and self.t.isAlive():
+            self.stop_event.set()
+            # self.center_label.config(text="Terminates when queue is \nempty")
 
