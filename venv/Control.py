@@ -36,7 +36,7 @@ class Control:
             time.sleep(self.pause_per_capture)
             self.queue = self.getCurrent()
             for character in self.queue:
-                if self.stop_event.is_set():
+                if self.stop_event.is_set() or time.time() - start > self.time:
                     return
                 self.kb.type(character)
                 time.sleep(self.pause_per_character)

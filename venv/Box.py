@@ -93,11 +93,12 @@ class Box:
             if not time:
                 self.center_label.config(text="Invalid duration:\nPlease enter number of\nseconds")
             else:
+                self.stop_event.clear()
                 self.control = Control(self.dim[0], self.dim[1], self.dim[2], self.dim[3], self.stop_event)
                 self.control.time = int(time)
                 self.t = Thread(target=self.control.start_main)
                 self.t.start()
-                self.center_label.config(text="Starting in 3 Seconds")
+                self.center_label.config(text="Happy Typing!")
         else:
             self.center_label.config(text="No Target")
 
